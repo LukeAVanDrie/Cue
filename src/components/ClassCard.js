@@ -14,7 +14,7 @@ export const ClassCard = () => {
                 <Card.Text>
                     2 Active TAs
                 </Card.Text>
-                <Button variant="q">Join Queue</Button>
+                <Button variant="cue">Join Queue</Button>
             </Card.Body>
         </Card>
     );

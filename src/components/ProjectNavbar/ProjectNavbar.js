@@ -14,9 +14,9 @@ const ProjectNavbar = ({ authUser, firebase, ...otherProps }) => {
             </Nav>
             <Nav>
                 {authUser ? (
-                    <Button onClick={() => firebase.signOut()}>Sign out</Button>
+                    <Button variant="cue" onClick={() => firebase.signOut()}>Sign Out</Button>
                 ) : (
-                    <Button onClick={() => firebase.signInWithGithub()}>Sign in</Button>
+                    <Button variant="cue" onClick={() => firebase.signInWithGithub()}>Sign In</Button>
                 )}
             </Nav>
         </Navbar>

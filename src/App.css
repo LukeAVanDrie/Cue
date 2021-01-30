@@ -41,18 +41,19 @@
     font-family: 'Rubik', sans-serif;
 }
 
-.btn-q {
-        background-color: #5E81AC;
-        border-radius: 10px;
-        border-width: 0px;
-        color: #ffffff;
-        padding: 10px 20px;
-    }
+.btn-cue {
+    font-weight: 500;
+    background-color: #5E81AC;
+    border-radius: 8px;
+    border-width: 0px;
+    color: #ffffff;
+    padding: 10px 20px;
+}
 
-.btn-q:hover {
-        background-color: #557aa6;
-        color: #ffffff;
-    }
+.btn-cue:hover {
+    background-color: #557aa6;
+    color: #ffffff;
+}
 
 .navbar-brand {
     color: #88C0D0 !important;
@@ -67,4 +68,18 @@
 .navbar-nav {
     font-size: 1.2em;
     margin-top: 4px;
+}
+
+.container {
+    margin-top: 22px;
+}
+
+textarea, input {
+    color: #ffffff !important;
+    background-color: #4C566A !important;
+    border-radius: 8px !important;
+}
+
+* {
+    color: #ffffff !important;
 }
