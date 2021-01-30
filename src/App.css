@@ -46,6 +46,10 @@
     font-weight: 700;
 }
 
+.nav-color {
+  background-color: #2E3440;  
+}
+
 .navbar-nav {
     font-size: 1.2em;
     margin-top: 4px;
