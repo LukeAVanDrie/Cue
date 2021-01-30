@@ -7,7 +7,12 @@ function App() {
         <div>
             <Navbar bg="dark" variant="dark" expand="lg">
                 <Navbar.Brand href="#home">Cue</Navbar.Brand>
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav className="mr-auto">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                </Nav>
+                <Nav>
+                    <Nav.Link href="#signout">Sign out</Nav.Link>
+                </Nav>
             </Navbar>
             <p>
                 Test App
