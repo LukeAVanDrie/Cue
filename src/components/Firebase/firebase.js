@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -16,13 +17,29 @@ class Firebase {
         app.initializeApp(config);
 
         this.auth = app.auth();
+        this.firestore = app.firestore();
         this.provider = new app.auth.GithubAuthProvider();
+    }
+
+    updateCreateUserFromGithub = (githubUser) => {
+        const userRef = this.firestore.collection(`users`).doc(`${githubUser.uid}`);
+
+        const user = {
+            uid: githubUser.uid,
+            name: githubUser.displayName,
+            email: githubUser.email,
+            photoUrl: githubUser.photoURL,
+            courses: []
+        }
+
+        userRef.set(user, {merge: true });
     }
 
     signInWithGithub = () => {
         this.auth.signInWithPopup(this.provider).then((result) => {
             // const token = result.credential.accessToken;
-            // const user = result.user;
+            const user = result.user;
+            this.updateCreateUserFromGithub(user);
         }).catch((error) => {
             // const { code, credential, email, message } = error;
             console.error(error);
