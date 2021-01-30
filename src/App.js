@@ -1,25 +1,43 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
-import { Home } from './pages/Home';
-import { Student } from './pages/Student';
-import { Ta } from './pages/Ta';
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ProjectNavbar } from './components/ProjectNavbar';
+import { Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const App = () => {
+import './App.css';
+import { Home, Student, Ta } from './pages';
+import { withFirebase, ProjectNavbar } from './components';
+
+const App = ({ firebase, ...otherProps }) => {
+    const [authUser, setAuthUser] = useState(null);
+
+    useEffect(() => {
+        const listener = firebase.auth.onAuthStateChanged((result) => {
+            result ? setAuthUser(result) : setAuthUser(null);
+        });
+
+        return () => {
+            listener();
+        };
+    }, [firebase.auth]);
+
     return (
         <Router>
-            <ProjectNavbar />
+            <ProjectNavbar authUser={authUser} />
             <Container>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/student" component={Student} />
-                    <Route exact path="/ta" component={Ta} />
+                    <Route exact path="/" render={
+                        (props) => <Home authUser={authUser} {...props} />
+                    } />
+                    <Route exact path="/student" render={
+                        (props) => <Student authUser={authUser} {...props} />
+                    } />
+                    <Route exact path="/ta" render={
+                        (props) => <Ta authUser={authUser} {...props} />
+                    } />
                 </Switch>
             </Container>
         </Router>
     );
 }
+
+export default withFirebase(App);
