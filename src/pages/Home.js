@@ -1,23 +1,26 @@
 import { Link } from 'react-router-dom';
-
-import { FirebaseContext } from '../components/Firebase';
+import { Col, Row } from 'react-bootstrap';
+import { ClassCard } from '../components/ClassCard'
 
 export const Home = () => {
     return (
-        <FirebaseContext.Consumer>
-            {(firebase) => {
-                return (
-                    <div>
-                        <button onClick={() => firebase.signInWithGithub()}>sign in</button>
-                        <button onClick={() => firebase.signOut()}>sign out</button>
-                        <ul>
-                            <li><Link to="/student">Student Page</Link></li>
-                            <li><Link to="/ta">TA Page</Link></li>
-                        </ul>
-                    </div>
-                )
-            }}
-
-        </FirebaseContext.Consumer>
+        <>
+            <ul>
+                <li><Link to="/student">Student Page</Link></li>
+                <li><Link to="/ta">TA Page</Link></li>
+            </ul>
+            <h2>My Courses</h2>
+                <Row>
+                    <Col sm={6}>
+                        <ClassCard/>
+                    </Col>
+                    <Col sm={6}>
+                        <ClassCard/>
+                    </Col>
+                    <Col sm={6}>
+                        <ClassCard/>
+                    </Col>
+                </Row>
+        </>
     );
 };
