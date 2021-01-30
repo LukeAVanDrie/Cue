@@ -40,3 +40,7 @@
 * {
   font-family: 'Rubik', sans-serif;
 }
+
+.navbar-brand {
+  font-size: 2em !important;
+}
