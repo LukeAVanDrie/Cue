@@ -1,3 +1,4 @@
+import './ClassCard.css';
 import { Button, Card } from 'react-bootstrap';
 
 export const ClassCard = () => {
