@@ -43,4 +43,10 @@
 
 .navbar-brand {
   font-size: 2em !important;
+  font-weight: 700;
+}
+
+.navbar-nav {
+    font-size: 1.2em;
+    margin-top: 4px;
 }
