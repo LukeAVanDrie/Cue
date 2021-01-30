@@ -1,16 +1,6 @@
-.button-join {
-    background-color: #88C0D0;
-    border-width: 0px;
-    padding: 10px;
-}
-
 .card {
     background-color: #4C566A;
     border-radius: 0 !important;
     border-width: 0px !important;
     margin-bottom: 25px;
-}
-
-.card-text {
-    color: #ffffff;
 }

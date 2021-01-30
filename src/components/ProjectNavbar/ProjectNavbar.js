@@ -7,7 +7,7 @@ const ProjectNavbar = ({ authUser, firebase, ...otherProps }) => {
     const location = useLocation();
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar className="nav-color" variant="dark" expand="lg">
             <Navbar.Brand href="/">Cue</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link active={location.pathname === "/"} href="/">Home</Nav.Link>

@@ -41,13 +41,27 @@
     font-family: 'Rubik', sans-serif;
 }
 
+.btn-q {
+        background-color: #5E81AC;
+        border-radius: 10px;
+        border-width: 0px;
+        color: #ffffff;
+        padding: 10px 20px;
+    }
+
+.btn-q:hover {
+        background-color: #557aa6;
+        color: #ffffff;
+    }
+
 .navbar-brand {
+    color: #88C0D0 !important;
     font-size: 2em !important;
     font-weight: 700;
 }
 
 .nav-color {
-  background-color: #2E3440;  
+    background-color: #2E3440 !important;  
 }
 
 .navbar-nav {

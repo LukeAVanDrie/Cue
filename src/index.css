@@ -3,6 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #3B4252 !important;
+  color: #ffffff !important;
 }
 
 code {
