@@ -2,21 +2,39 @@ import { Button, Card } from 'react-bootstrap';
 
 import './Card.css';
 
-export const ClassCard = () => {
+const ClassCard = ({ courseName, userIsTa, studentsInQueue, activeTas }) => {
+    const cardText = activeTas > 0 ? (
+            <>
+                <Card.Text>
+                    {studentsInQueue} {studentsInQueue === 1 ? "student" : "students"} in queue
+                </Card.Text>
+                <Card.Text>
+                    {activeTas} active {activeTas === 1 ? "teaching assistant" : "teaching assistants"}
+                </Card.Text>
+            </>
+        ) : (
+            <Card.Text>
+                Not currently active
+            </Card.Text>
+        );
+    const actionButton = userIsTa ? (
+            <Button variant="cue">Start helping</Button>
+        ) : (
+            <Button variant="cue" disabled={activeTas === 0}>Put name into queue</Button>
+        );
+    
     return (
         <Card>
             <Card.Body>
                 <h2>
-                    Course Name
+                    {courseName}
                 </h2>
-                <Card.Text>
-                    X Students in Queue
-                </Card.Text>
-                <Card.Text>
-                    2 Active TAs
-                </Card.Text>
-                <Button variant="cue">Join Queue</Button>
+                {cardText}
+                {actionButton}
             </Card.Body>
         </Card>
     );
 }
+
+export default ClassCard;
+ 
