@@ -32,16 +32,8 @@ const StudentCard = ({ studentName, questionText, room, currentUserOccupied, hel
                         </Card.Text>
                     </Col>
                     <Col md={4}>
-                        <Row>
-                            <Col>
-                                {takeToggle}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Button variant="cue" className="remove" disabled={beingHelped && !helpedByCurrentUser} block>Remove student</Button>
-                            </Col>
-                        </Row>
+                            {takeToggle}
+                            <Button variant="cue" className="remove" disabled={beingHelped && !helpedByCurrentUser} block>Remove student</Button>
                     </Col>
                 </Row>
             </Card.Body>
