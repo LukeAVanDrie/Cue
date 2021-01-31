@@ -1,11 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import { withAuthUser, withFirebase, StudentCard } from '../components';
 
 const Ta = ({ authUser, firebase, ...otherProps }) => {
+    const history = useHistory();
     const [course, setCourse] = useState();
     const { courseId } = useParams();
+    const [canLeavePage, setCanLeavePage] = useState(false);
+
+    useEffect(() => {
+        const enableLeavePage = () => window.onbeforeunload = undefined;
+        const disableLeavePage = () => window.onbeforeunload = () => true;
+        if (canLeavePage) {
+            enableLeavePage();
+        } else {
+            disableLeavePage();
+        }
+
+        // Run this when unloading the component:
+        return enableLeavePage;
+    }, [canLeavePage]);
+    const handleDoneHelpingStudents = () => {
+        setCanLeavePage(true);
+        history.replace("/");
+    };
 
     useEffect(() => {
         let unsubscribe = null;
@@ -39,6 +59,7 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
     const currentUserOccupied = course && course.activeTas.some((ta) => ta.taId === authUser.id);
     return !authUser ? null : (
         <>
+            <h1>Student Queue <Button variant="cue" className="remove" size="sm" onClick={handleDoneHelpingStudents}>Done helping students</Button></h1>
             {course && course.queue.map((student) => {
                 const interactions = course.activeTas.filter((ta) => ta.studentId === student.id);
 

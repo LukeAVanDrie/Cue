@@ -16,21 +16,21 @@ const StudentCard = ({ currentUserOccupied, helpedByCurrentUser, beingHelped, id
                 <div>
                     {taName ? <Badge variant="primary" className="helping-ta-badge">TA: {taName}</Badge> : null}
                 </div>
-                <h2>{studentName}</h2>
+                <h2>{name}</h2>
                 <Row>
                     <Col md={3}>
                         <Card.Text>
-                            Question: {problemDescription}
+                            <Badge variant="secondary" className="metadata-badge">Question:</Badge> {problemDescription}
                         </Card.Text>
                     </Col>
                     <Col md={3}>
                         <Card.Text>
-                            Notes: {notes || "N/A"}
+                            <Badge variant="secondary" className="metadata-badge">Notes:</Badge> {notes || "N/A"}
                         </Card.Text>
                     </Col>
                     <Col md={2}>
                         <Card.Text>
-                            Room: {room || "N/A"}
+                            <Badge variant="secondary" className="metadata-badge">Room:</Badge>  {room || "N/A"}
                         </Card.Text>
                     </Col>
                     <Col md={4}>
