@@ -1,8 +1,8 @@
 import { Button, Card } from 'react-bootstrap';
 
-import './ClassCard.css';
+import './Card.css';
 
-const ClassCard = () => {
+export const ClassCard = () => {
     return (
         <Card>
             <Card.Body>
@@ -20,5 +20,3 @@ const ClassCard = () => {
         </Card>
     );
 }
-
-export default ClassCard;

@@ -1,10 +1,10 @@
-import { AuthUserContext } from '../components';
+import { AuthUserContext, StudentCard } from '../components';
 
 const Ta = () => {
     return (
         <AuthUserContext.Consumer>
             {(authUser) => !authUser ? null : (
-                <h1>TA</h1>
+                <StudentCard studentName="Matt Vav" questionText="Java syntax" room="141" notes="I want Luke"/>
             )}
         </AuthUserContext.Consumer>
     );
