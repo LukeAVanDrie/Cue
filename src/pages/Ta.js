@@ -57,7 +57,7 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
     }, [authUser, courseId, firebase]);
 
     const currentUserOccupied = course && course.activeTas.some((ta) => ta.taId === authUser.id);
-    return !authUser ? null : (
+    return !authUser ? <h1>Not logged in.</h1> : (
         <>
             <h1>Student Queue <Button variant="cue" className="remove" size="sm" onClick={handleDoneHelpingStudents}>Done helping students</Button></h1>
             {course && course.queue.map((student) => {

@@ -26,7 +26,7 @@ const StudentWaiting = ({ activeTas, authUser, firebase, studentsAhead, ...other
         }
     }, [authUser, courseId, firebase, history]);
 
-    return !authUser ? null : (
+    return !authUser ? <h1>Not logged in.</h1> : (
         <div className="large-top-margin">
             {studentsAhead > 0 ?
                 (<>

@@ -20,7 +20,7 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
         }
     }, [authUser, firebase]);
 
-    return !authUser ? null : (
+    return !authUser ? <h1>Not logged in.</h1> : (
         <>
             <h1>My Courses</h1>
             {courses.length ? (
