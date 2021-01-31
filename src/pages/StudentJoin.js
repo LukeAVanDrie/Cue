@@ -35,7 +35,7 @@ const StudentJoin = () => {
                             <Form.Control as="textarea" placeholder="Additional information (optional)" rows={3} value={notes} onInput={handleInput(setNotes)} />
                         </Form.Group>
                         <Form.Group>
-                            <Button variant="cue" size="lg" onClick={handleSubmit}>Put name into queue</Button>
+                            <Button variant="cue" size="lg" disabled={problemDescription.length === 0} onClick={handleSubmit}>Put name into queue</Button>
                         </Form.Group>
                     </form>
                 </div>
