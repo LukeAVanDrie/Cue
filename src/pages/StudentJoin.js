@@ -19,11 +19,11 @@ const StudentJoin = () => {
     return (
         <AuthUserContext.Consumer>
             {(authUser) => !authUser ? null : (
-                <>
+                <div className="desktop-top-margin-20vh">
                     <h1>Put your name into the queue to get help</h1>
                     <form>
                         <Form.Group>
-                            <Form.Label className="h5">Briefly, what do you need help with?</Form.Label>
+                            <Form.Label className="h5">Briefly: what do you need help with? <span className="text-danger">(Required)</span></Form.Label>
                             <Form.Control as="textarea" rows={3} value={problemDescription} placeholder="A quick description of what you need help with" onInput={handleInput(setProblemDescription)} />
                         </Form.Group>
                         <Form.Group>
@@ -38,7 +38,7 @@ const StudentJoin = () => {
                             <Button variant="cue" size="lg" onClick={handleSubmit}>Put name into queue</Button>
                         </Form.Group>
                     </form>
-                </>
+                </div>
             )}
         </AuthUserContext.Consumer>
     );

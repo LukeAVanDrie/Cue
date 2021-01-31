@@ -10,7 +10,7 @@ const ProjectNavbar = ({ firebase, ...otherProps }) => {
     const location = useLocation();
 
     return (
-        <Navbar className="nav-color" variant="dark" expand="lg">
+        <Navbar sticky="top" className="nav-color" variant="dark" expand="lg">
             <Navbar.Brand href="/">Cue</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link active={location.pathname === "/"} href="/">My Courses</Nav.Link>
