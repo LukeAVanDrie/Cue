@@ -11,11 +11,16 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
     const [canLeavePage, setCanLeavePage] = useState(false);
 
     useEffect(() => {
+        const enableLeavePage = () => window.onbeforeunload = undefined;
+        const disableLeavePage = () => window.onbeforeunload = () => true;
         if (canLeavePage) {
-            window.onbeforeunload = undefined;
+            enableLeavePage();
         } else {
-            window.onbeforeunload = () => true;
+            disableLeavePage();
         }
+
+        // Run this when unloading the component:
+        return enableLeavePage;
     }, [canLeavePage]);
     const handleDoneHelpingStudents = () => {
         setCanLeavePage(true);
