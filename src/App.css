@@ -116,3 +116,13 @@ textarea, input {
 * {
     color: #ffffff !important;
 }
+
+.students-ahead {
+    display: flex;    
+}
+
+.students-ahead > h1 {
+    color: #8FBCBB !important;
+    font-size: 1000%;
+    margin: auto;
+}
