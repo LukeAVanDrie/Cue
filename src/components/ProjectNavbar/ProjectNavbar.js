@@ -11,7 +11,7 @@ const ProjectNavbar = ({ firebase, ...otherProps }) => {
 
     return (
         <Navbar sticky="top" className="nav-color" variant="dark" expand="lg">
-            <Navbar.Brand href="/">Cue</Navbar.Brand>
+            <Navbar.Brand href="/">TA Cue</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link active={location.pathname === "/"} href="/">My Courses</Nav.Link>
             </Nav>

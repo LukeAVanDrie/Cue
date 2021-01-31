@@ -184,7 +184,7 @@ textarea::placeholder, input::placeholder {
 }
 
 @media only screen and (min-width: 768px) {
-    .desktop-top-margin-20vh {
-        margin-top: 20vh;
+    .desktop-top-margin-18vh {
+        margin-top: 18vh;
     }
 }

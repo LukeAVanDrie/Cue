@@ -6,7 +6,7 @@ const StudentWaiting = ({ studentsAhead, activeTas }) => {
     return (
         <AuthUserContext.Consumer>
             {(authUser) => !authUser ? null : (
-                <div className="desktop-top-margin-20vh">
+                <div className="desktop-top-margin-18vh">
                     <h1 className="text-center">You're in the queue!</h1>
                     <Row>
                         <Col className="students-ahead" md={6}>
