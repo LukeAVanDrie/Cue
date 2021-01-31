@@ -23,13 +23,19 @@ const StudentJoin = () => {
                     <h1>Put your name into the queue to get help</h1>
                     <form>
                         <Form.Group>
-                            <Form.Label>In a sentence or two, what do you need help with?</Form.Label>
-                            <Form.Control as="textarea" rows={3} value={problemDescription} onInput={handleInput(setProblemDescription)} />
-                            <Form.Label>What room are you in?</Form.Label>
-                            <Form.Control as="input" value={room} onInput={handleInput(setRoom)} />
-                            <Form.Label>Is there anything else the TAs should be aware of?</Form.Label>
-                            <Form.Control as="textarea" rows={3} value={notes} onInput={handleInput(setNotes)} />
-                            <Button variant="cue" onClick={handleSubmit}>Submit</Button>
+                            <Form.Label className="h5">Briefly, what do you need help with?</Form.Label>
+                            <Form.Control as="textarea" rows={3} value={problemDescription} placeholder="A quick description of what you need help with" onInput={handleInput(setProblemDescription)} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="h5">What room are you in?</Form.Label>
+                            <Form.Control as="input" value={room} placeholder="Room name or number (optional)" onInput={handleInput(setRoom)} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="h5">Is there anything else the TAs should be aware of?</Form.Label>
+                            <Form.Control as="textarea" placeholder="Additional information (optional)" rows={3} value={notes} onInput={handleInput(setNotes)} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Button variant="cue" size="lg" onClick={handleSubmit}>Put name into queue</Button>
                         </Form.Group>
                     </form>
                 </>
