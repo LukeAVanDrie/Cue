@@ -2,8 +2,9 @@ import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
+import { AuthUserContext } from '../Session';
 
-const ProjectNavbar = ({ authUser, firebase, ...otherProps }) => {
+const ProjectNavbar = ({ firebase, ...otherProps }) => {
     const location = useLocation();
 
     return (
@@ -13,11 +14,13 @@ const ProjectNavbar = ({ authUser, firebase, ...otherProps }) => {
                 <Nav.Link active={location.pathname === "/"} href="/">Home</Nav.Link>
             </Nav>
             <Nav>
-                {authUser ? (
-                    <Button onClick={() => firebase.signOut()}>Sign out</Button>
-                ) : (
-                    <Button onClick={() => firebase.signInWithGithub()}>Sign in</Button>
-                )}
+                <AuthUserContext.Consumer>
+                    {(authUser) => authUser ? (
+                        <Button onClick={() => firebase.signOut()}>Sign out</Button>
+                    ) : (
+                        <Button onClick={() => firebase.signInWithGithub()}>Sign in</Button>
+                    )}
+                </AuthUserContext.Consumer>
             </Nav>
         </Navbar>
     );

@@ -4,7 +4,7 @@ const FirebaseContext = React.createContext(null);
 
 export const withFirebase = WrappedComponent => (props) => (
     <FirebaseContext.Consumer>
-        {firebase => <WrappedComponent {...props} firebase={firebase} />}
+        {(firebase) => <WrappedComponent {...props} firebase={firebase} />}
     </FirebaseContext.Consumer>
 );
 
