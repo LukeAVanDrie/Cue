@@ -184,7 +184,17 @@ textarea::placeholder, input::placeholder {
 }
 
 @media only screen and (min-width: 768px) {
-    .desktop-top-margin-18vh {
+    .large-top-margin {
         margin-top: 18vh;
     }
+}
+
+@media only screen and (max-width: 767px) {
+    .large-top-margin {
+        margin-top: 6vh;
+    }
+}
+
+.checkmark {
+    margin-bottom: 25px;
 }

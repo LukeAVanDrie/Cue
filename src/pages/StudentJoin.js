@@ -46,7 +46,7 @@ const StudentJoin = ({ authUser, firebase, ...otherProps }) => {
 
     return !authUser ? null : (
         <Row>
-            <Col md={{span: 8, offset: 2}} className="desktop-top-margin-18vh">
+            <Col md={{span: 8, offset: 2}} className="large-top-margin">
                 <h1>Put your name into the queue to get help</h1>
                 <form>
                     <Form.Group>
