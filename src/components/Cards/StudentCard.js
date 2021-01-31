@@ -44,25 +44,9 @@ const StudentCard = ({ studentName, questionText, room, notes }) => {
                             <Col md={4}>
                                 <Button variant="cue" className="generic">
                                     <FaAngleDown />
-                                </Button>                                
-                            </Col>
-                        </Row>
-
-                        {/* <Button variant="cue">Help student</Button>
-                        <Row>
-                            <Col>
-                                <Button variant="cue">
-                                    <FaAngleUp />
                                 </Button>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <Button variant="cue">
-                                    <FaAngleDown />
-                                </Button>
-                            </Col>
-                        </Row> */}
                     </Col>
                 </Row>
             </Card.Body>
