@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,9 +14,10 @@ const App = () => {
             <Container>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/student/id/join" component={StudentJoin} />
-                    <Route exact path="/student/id/waiting" component={StudentWaiting} />
-                    <Route exact path="/ta" component={Ta} />
+                    <Route path="/student/:courseId/join" component={StudentJoin} />
+                    <Route path="/student/:courseId/waiting" component={StudentWaiting} />
+                    <Route path="/ta/:courseId" component={Ta} />
+                    <Redirect to="/" />
                 </Switch>
             </Container>
         </Router>
