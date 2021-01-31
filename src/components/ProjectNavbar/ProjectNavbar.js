@@ -16,9 +16,9 @@ const ProjectNavbar = ({ firebase, ...otherProps }) => {
             <Nav>
                 <AuthUserContext.Consumer>
                     {(authUser) => authUser ? (
-                        <Button variant="cue" onClick={() => firebase.signOut()}>Sign out</Button>
+                        <Button variant="cue" className="generic" onClick={() => firebase.signOut()}>Sign out</Button>
                     ) : (
-                        <Button variant="cue" onClick={() => firebase.signInWithGithub()}>Sign in</Button>
+                        <Button variant="cue" className="signin" onClick={() => firebase.signInWithGithub()}>Sign in</Button>
                     )}
                 </AuthUserContext.Consumer>
             </Nav>

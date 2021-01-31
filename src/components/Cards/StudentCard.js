@@ -27,7 +27,28 @@ const StudentCard = ({ studentName, questionText, room, notes }) => {
                         </Card.Text>
                     </Col>
                     <Col md={4}>
-                        <Button variant="cue" block>Select student</Button>
+                        <Row>
+                            <Col md={8}>
+                                <Button variant="cue" className="success" block>Help student</Button>
+                            </Col>
+                            <Col md={4}>
+                                <Button variant="cue" className="generic">
+                                    <FaAngleUp />
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={8}>
+                                <Button variant="cue" className="remove" block>Remove student</Button>
+                            </Col>
+                            <Col md={4}>
+                                <Button variant="cue" className="generic">
+                                    <FaAngleDown />
+                                </Button>                                
+                            </Col>
+                        </Row>
+
+                        {/* <Button variant="cue">Help student</Button>
                         <Row>
                             <Col>
                                 <Button variant="cue">
@@ -41,7 +62,7 @@ const StudentCard = ({ studentName, questionText, room, notes }) => {
                                     <FaAngleDown />
                                 </Button>
                             </Col>
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Row>
             </Card.Body>

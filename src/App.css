@@ -48,11 +48,44 @@
     border-width: 0px;
     color: #ffffff;
     padding: 10px 20px;
+    margin: 5px 0px;
 }
 
 .btn-cue:hover {
     background-color: #557aa6;
     color: #ffffff;
+}
+
+.generic {
+    background-color: #2E3440;
+}
+
+.generic:hover {
+    background-color: #2a2f3a;
+}
+
+.signin {
+    background-color: #5E81AC !important;
+}
+
+.signin:hover {
+    background-color: #5376a1;
+}
+
+.remove {
+    background-color: #BF616A;
+}
+
+.remove:hover {
+    background-color: #b8505a;
+}
+
+.success {
+    background-color: #A3BE8C;
+}
+
+.success:hover {
+    background-color: #95b47b;
 }
 
 .navbar-brand {
