@@ -41,7 +41,6 @@ class Firebase {
         this.currentUser = user;
     }
 
-    // Returns promise with the user
     signInWithGithub = () => {
         this.auth.signInWithPopup(this.provider).then((result) => {
             // const token = result.credential.accessToken;

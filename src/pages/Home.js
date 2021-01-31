@@ -1,35 +1,46 @@
+import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
-import { AuthUserContext, ClassCard } from '../components'
+import { withAuthUser, withFirebase, ClassCard } from '../components'
 
-export const Home = () => {
-    return (
-        <AuthUserContext.Consumer>
-            {(authUser) => !authUser ? null : (
-                <>
-                    <h1>My Courses</h1>
-                    <Row>
-                        <Col sm={6}>
-                            <ClassCard key={0} courseName="RAIK 183H" studentsInQueue={0} activeTas={0} />
+const Home = ({ authUser, firebase, ...otherProps }) => {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        if (authUser) {
+            firebase.firestore
+                .collection("courses")
+                .where("members", "array-contains", authUser.uid)
+                .onSnapshot((snapshot) => {
+                    const updatedCourses = [];
+                    snapshot.forEach((doc) => updatedCourses.push(doc.data()));
+                    updatedCourses.sort((a, b) => a.name > b.name);
+                    setCourses(updatedCourses);
+                });
+        }
+    }, [authUser, firebase]);
+
+    return !authUser ? null : (
+        <>
+            <h1>My Courses</h1>
+            {courses.length ? (
+                <Row>
+                    {courses.map((course) => (
+                        <Col key={course.id} sm={6}>
+                            <ClassCard
+                                activeTas={course.activeTas.length}
+                                isTa={course.tas.includes(authUser.uid)}
+                                name={course.name}
+                                studentsInQueue={course.queue.length}
+                            />
                         </Col>
-                        <Col sm={6}>
-                            <ClassCard key={1} courseName="Keck III" studentsInQueue={0} activeTas={1} />
-                        </Col>
-                        <Col sm={6}>
-                            <ClassCard key={2} courseName="CSCE 100" studentsInQueue={1} activeTas={1} />
-                        </Col>
-                        <Col sm={6}>
-                            <ClassCard key={2} courseName="CSCE 100" studentsInQueue={0} activeTas={0} userIsTa />
-                        </Col>
-                        <Col sm={6}>
-                            <ClassCard key={2} courseName="CSCE 100" studentsInQueue={3} activeTas={3} userIsTa />
-                        </Col>
-                    </Row>
-                    <p class="h4">No courses found—please contact a teaching assistant to be added to your course!</p>
-                </>
+                    ))}
+                </Row>
+            ) : (
+                <p className="h4">No courses found—please contact a teaching assistant to be added to your course!</p>
             )}
-        </AuthUserContext.Consumer>
+        </>
     );
 };
 
-export default Home;
+export default withFirebase(withAuthUser(Home));

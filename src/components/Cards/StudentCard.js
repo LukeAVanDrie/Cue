@@ -2,7 +2,7 @@ import { Button, Card } from 'react-bootstrap';
 
 import './Card.css';
 
-export const StudentCard = ({ studentName, questionText, room, notes }) => {
+const StudentCard = ({ studentName, questionText, room, notes }) => {
     return (
         <Card>
             <Card.Body>
@@ -25,3 +25,5 @@ export const StudentCard = ({ studentName, questionText, room, notes }) => {
         </Card>
     );
 }
+
+export default StudentCard;

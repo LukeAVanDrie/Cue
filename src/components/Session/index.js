@@ -1,1 +1,1 @@
-export { default as AuthUserContext, withAuthentication } from './context';
+export { default as AuthUserContext, withAuthentication, withAuthUser } from './context';
