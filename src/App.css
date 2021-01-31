@@ -55,21 +55,6 @@
     color: #ffffff;
 }
 
-.navbar-brand {
-    color: #88C0D0 !important;
-    font-size: 2em !important;
-    font-weight: 700;
-}
-
-.nav-color {
-    background-color: #2E3440 !important;  
-}
-
-.navbar-nav {
-    font-size: 1.2em;
-    margin-top: 4px;
-}
-
 .container {
     margin-top: 22px;
 }
