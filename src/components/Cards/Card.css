@@ -8,3 +8,8 @@
 .card-text {
     margin-bottom: 10px;
 }
+
+.ta-badge {
+    float: right;
+    background-color: #88C0D0;
+}

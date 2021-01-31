@@ -77,7 +77,7 @@
 }
 
 .remove:hover {
-    background-color: #b8505a;
+    background-color: #BF616A;
 }
 
 .success {
@@ -141,6 +141,7 @@ textarea::placeholder, input::placeholder {
 .students-ahead > span {
     color: #8FBCBB !important;
     font-size: 1000%;
+    font-weight: 500;
     margin: auto;
 }
 
@@ -176,4 +177,14 @@ textarea::placeholder, input::placeholder {
 .content-center {
     justify-content: center;
     display: flex;
+}
+
+.text-danger {
+    color: #BF616A !important;
+}
+
+@media only screen and (min-width: 768px) {
+    .desktop-top-margin-18vh {
+        margin-top: 18vh;
+    }
 }
