@@ -1,9 +1,14 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 
 import './Card.css';
 
-const StudentCard = ({ studentName, questionText, room, notes }) => {
+const StudentCard = ({ studentName, questionText, room, currentUserOccupied, helpedByCurrentUser, beingHelped, notes }) => {
+    const takeToggle = helpedByCurrentUser ? (
+        <Button variant="cue" className="remove" block>Release this student</Button>
+    ) : (
+            <Button variant="cue" className="success" disabled={currentUserOccupied} block>Take this student</Button>
+        );
+
     return (
         <Card>
             <Card.Body>
@@ -28,23 +33,13 @@ const StudentCard = ({ studentName, questionText, room, notes }) => {
                     </Col>
                     <Col md={4}>
                         <Row>
-                            <Col md={8}>
-                                <Button variant="cue" className="success" block>Help student</Button>
-                            </Col>
-                            <Col md={4}>
-                                <Button variant="cue" className="generic">
-                                    <FaAngleUp />
-                                </Button>
+                            <Col>
+                                {takeToggle}
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={8}>
-                                <Button variant="cue" className="remove" block>Remove student</Button>
-                            </Col>
-                            <Col md={4}>
-                                <Button variant="cue" className="generic">
-                                    <FaAngleDown />
-                                </Button>
+                            <Col>
+                                <Button variant="cue" className="remove" disabled={beingHelped && !helpedByCurrentUser} block>Remove student</Button>
                             </Col>
                         </Row>
                     </Col>
