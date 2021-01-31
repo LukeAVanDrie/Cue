@@ -1,8 +1,9 @@
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Badge, Button, Card, Col, Row } from 'react-bootstrap';
 
 import './Card.css';
 
 const StudentCard = ({ studentName, questionText, room, currentUserOccupied, helpedByCurrentUser, beingHelped, notes }) => {
+    const taName = "Tony";
     const takeToggle = helpedByCurrentUser ? (
         <Button variant="cue" className="remove" block>Release this student</Button>
     ) : (
@@ -12,9 +13,10 @@ const StudentCard = ({ studentName, questionText, room, currentUserOccupied, hel
     return (
         <Card>
             <Card.Body>
-                <h2>
-                    {studentName}
-                </h2>
+                <div>
+                    {taName ? <Badge variant="primary" className="helping-ta-badge">TA: {taName}</Badge> : null}
+                </div>
+                <h2>{studentName}</h2>
                 <Row>
                     <Col md={3}>
                         <Card.Text>

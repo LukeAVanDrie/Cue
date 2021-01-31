@@ -13,3 +13,10 @@
     float: right;
     background-color: #88C0D0;
 }
+
+.helping-ta-badge {
+    background-color: #EBCB8B;
+    color: black !important;
+    font-size: 150%;
+    margin-bottom: 10px;
+}
