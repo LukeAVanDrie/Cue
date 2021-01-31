@@ -1,2 +1,2 @@
 export { default as ClassCard } from './ClassCard';
-export { StudentCard } from './StudentCard';
+export { default as StudentCard } from './StudentCard';
