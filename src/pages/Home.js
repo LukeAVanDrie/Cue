@@ -7,8 +7,9 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
+        let unsubscribe = null;
         if (authUser) {
-            firebase.firestore
+            unsubscribe = firebase.firestore
                 .collection("courses")
                 .where("members", "array-contains", authUser.uid)
                 .onSnapshot((snapshot) => {
@@ -17,6 +18,12 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
                     updatedCourses.sort((a, b) => a.name.localeCompare(b.name));
                     setCourses(updatedCourses);
                 });
+        }
+
+        return () => {
+            if (unsubscribe) {
+                unsubscribe() 
+            };
         }
     }, [authUser, firebase]);
 

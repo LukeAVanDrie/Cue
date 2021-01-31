@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Cue
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cue is a web application designed for teaching assistants to facilitate holding remote, hybrid, and in-person office hours. 
 
-## Available Scripts
+![img](https://lh4.googleusercontent.com/zOsT-2C87G0RLzK1m97cAIppIUoWiLP3hU8CWFCIczuUhTPhoNKr8O9bwf-JPu_rnzZWY5qaoY9RXujAAb1IbsGU7_aB-zw31BaMhjvwip72xjlihTpNMukfuZQgE2UrvJ9qIBDOvAg)
 
-In the project directory, you can run:
+## Problem Statement
 
-### `npm start`
+The pandemic has made managing office hours extra difficult as teaching assistants need to juggle watching the queue for updates, helping students on Zoom or in person according to their preferences, and keeping track of who is being helped and who is away from their computer. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Our current solution is a Google Doc. This is completely anonymized, unsecure, lacks relevant information such as whether the student is online or in person, and makes it difficult to determine when a student is being helped and by whom.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Value Proposition
 
-### `npm test`
+Cue seeks to eliminate these concerns by requiring students to sign with their GitHub accounts and include essential information for the teaching assistants on queue entry; moreover, it gathers all course info for a given student into one place and allows them to easily see which teaching assistants are available and when office hours are open. It also offers finer controls for teaching assistants to manage the queue, and see when students are being helped by their co-teaching assistants. Finally, it only allows students to have control over their own queue entry for courses they are authorized for. A student can no longer view, modify, or remove other students' queue entries. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This feature set provides teaching assistants with the tools necessary to run successful office hours regardless of the format by eliminating unnecessary burdens and redundant actions as well as providing them with consistent, relevant information and finer control over the queue.
 
-### `npm run build`
+## Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Hosted
+The project is hosted at [https://tada-cue.web.app)](https://tada-cue.web.app).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Local
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository.
+2. Run ```npm install```.
+3. Run ```npm start```.
+4. View the project at [https://localhost:3000/](https://localhost:3000/).
 
-### `npm run eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Teaching assistants Patrick Murphy, Luke Van Drie, Matthew Vavricek, and Antonio Linhart.
