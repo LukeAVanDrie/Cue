@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import { Home, Student, Ta } from './pages';
+import { Home, StudentJoin, StudentWaiting, Ta } from './pages';
 import { withAuthentication, ProjectNavbar } from './components';
 
 const App = () => {
@@ -14,7 +14,8 @@ const App = () => {
             <Container>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/student" component={Student} />
+                    <Route exact path="/student/id/join" component={StudentJoin} />
+                    <Route exact path="/student/id/waiting" component={StudentWaiting} />
                     <Route exact path="/ta" component={Ta} />
                 </Switch>
             </Container>
