@@ -113,6 +113,10 @@ textarea, input {
     border-radius: 8px !important;
 }
 
+textarea::placeholder, input::placeholder {
+    color: #dddddd !important;
+}
+
 * {
     color: #ffffff !important;
 }

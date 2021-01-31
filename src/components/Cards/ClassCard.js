@@ -1,8 +1,10 @@
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { WrappedButton } from './../Helpers';
 
 import './Card.css';
 
-const ClassCard = ({ activeTas, isTa, name, studentsInQueue, ...otherProps }) => {
+const ClassCard = ({ activeTas, courseId, isTa, name, studentsInQueue, ...otherProps }) => {
     const cardText = activeTas > 0 ? (
         <>
             <Card.Text>
@@ -20,9 +22,9 @@ const ClassCard = ({ activeTas, isTa, name, studentsInQueue, ...otherProps }) =>
     );
 
     const actionButton = isTa ? (
-        <Button variant="cue">Start helping</Button>
+        <Link to={`/ta/${courseId}`} component={WrappedButton} variant="cue">Start helping</Link>
     ) : (
-        <Button variant="cue" disabled={activeTas === 0}>Put name into queue</Button>
+        <Link to={`/student/${courseId}/join`} component={WrappedButton} variant="cue" disabled={activeTas === 0}>Put name into queue</Link>
     );
 
     return (

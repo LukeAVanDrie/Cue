@@ -29,6 +29,7 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
                         <Col key={course.id} sm={6}>
                             <ClassCard
                                 activeTas={course.activeTas.length}
+                                courseId={course.id}
                                 isTa={course.tas.includes(authUser.uid)}
                                 name={course.name}
                                 studentsInQueue={course.queue.length}
