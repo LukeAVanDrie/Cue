@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Badge, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { WrappedButton } from './../Helpers';
 
@@ -30,7 +30,7 @@ const ClassCard = ({ activeTas, courseId, isTa, name, studentsInQueue, ...otherP
     return (
         <Card>
             <Card.Body>
-                <h2>{name}</h2>
+                <h2>{name} {isTa ? <Badge variant="primary" className="ta-badge">TA</Badge> : null}</h2>
                 {cardText}
                 {actionButton}
             </Card.Body>
