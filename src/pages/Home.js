@@ -14,7 +14,7 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
                 .onSnapshot((snapshot) => {
                     const updatedCourses = [];
                     snapshot.forEach((doc) => updatedCourses.push(doc.data()));
-                    updatedCourses.sort((a, b) => a.name > b.name);
+                    updatedCourses.sort((a, b) => a.name.localeCompare(b.name));
                     setCourses(updatedCourses);
                 });
         }
