@@ -1,4 +1,5 @@
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
+import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 
 import './Card.css';
 
@@ -9,18 +10,61 @@ const StudentCard = ({ studentName, questionText, room, notes }) => {
                 <h2>
                     {studentName}
                 </h2>
-                <Card.Text>
-                    Question: {questionText}
-                </Card.Text>
-                <Card.Text>
-                    Room: {room || "N/A"}
-                </Card.Text>
-                <Card.Text>
-                    {!notes ? null : <>
-                        Notes: {notes}
-                    </>}
-                </Card.Text>
-                <Button variant="cue">Select Student</Button>
+                <Row>
+                    <Col md={3}>
+                        <Card.Text>
+                            Question: {questionText}
+                        </Card.Text>
+                    </Col>
+                    <Col md={3}>
+                        <Card.Text>
+                            Notes: {notes || "N/A"}
+                        </Card.Text>
+                    </Col>
+                    <Col md={2}>
+                        <Card.Text>
+                            Room: {room || "N/A"}
+                        </Card.Text>
+                    </Col>
+                    <Col md={4}>
+                        <Row>
+                            <Col md={8}>
+                                <Button variant="cue" className="success" block>Help student</Button>
+                            </Col>
+                            <Col md={4}>
+                                <Button variant="cue" className="generic">
+                                    <FaAngleUp />
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={8}>
+                                <Button variant="cue" className="remove" block>Remove student</Button>
+                            </Col>
+                            <Col md={4}>
+                                <Button variant="cue" className="generic">
+                                    <FaAngleDown />
+                                </Button>                                
+                            </Col>
+                        </Row>
+
+                        {/* <Button variant="cue">Help student</Button>
+                        <Row>
+                            <Col>
+                                <Button variant="cue">
+                                    <FaAngleUp />
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button variant="cue">
+                                    <FaAngleDown />
+                                </Button>
+                            </Col>
+                        </Row> */}
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
     );

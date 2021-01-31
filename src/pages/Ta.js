@@ -4,7 +4,10 @@ const Ta = () => {
     return (
         <AuthUserContext.Consumer>
             {(authUser) => !authUser ? null : (
-                <StudentCard studentName="Matt Vav" questionText="Java syntax" room="141" notes="I want Luke"/>
+                <>
+                    <StudentCard studentName="Matt Vav Antonio Linhart Patrick Murphy" questionText="Java syntax" room="141" />
+                    <StudentCard studentName="Luke Van Drie Patrick Murphy" questionText="Pacman lair" room="112" notes="We want Matt" />
+                </>
             )}
         </AuthUserContext.Consumer>
     );
