@@ -22,7 +22,10 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
         // Run this when unloading the component:
         return enableLeavePage;
     }, [canLeavePage]);
+
     const handleDoneHelpingStudents = () => {
+        const studentId = course.activeTas.find((ta) => ta.taId === authUser.uid).studentId;
+        firebase.setActiveTa(false, courseId, studentId, authUser.uid, authUser.name);
         setCanLeavePage(true);
         history.replace("/");
     };
@@ -30,16 +33,7 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
     useEffect(() => {
         let unsubscribe = null;
         if (authUser) {
-            firebase.firestore
-                .collection("courses")
-                .doc(courseId)
-                .update({
-                    "activeTas": firebase.fieldValue.arrayUnion({
-                        "taId": authUser.uid,
-                        "studentId": null,
-                    })
-                });
-
+            firebase.setActiveTa(true, courseId, null, authUser.uid, authUser.name);
             unsubscribe = firebase.firestore
                 .collection("courses")
                 .doc(courseId)
@@ -56,8 +50,8 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
 
     }, [authUser, courseId, firebase]);
 
-    const currentUserOccupied = course && course.activeTas.some((ta) => ta.taId === authUser.id);
-    return !authUser ? <h1>Not logged in.</h1> : (
+    const currentUserOccupied = authUser && course && course.activeTas.some((ta) => ta.taId === authUser.id);
+    return !authUser ? null : (
         <>
             <h1>Student Queue <Button variant="cue" className="remove" size="sm" onClick={handleDoneHelpingStudents}>Done helping students</Button></h1>
             {course && course.queue.map((student) => {
@@ -74,7 +68,11 @@ const Ta = ({ authUser, firebase, ...otherProps }) => {
                         notes={student.notes}
                         problemDescription={student.problemDescription} 
                         room={student.room}
-                        onRemove={(args) => firebase.removeStudentFromQueue(courseId, ...args)}
+                        onHelp={(...args) => firebase.helpStudent(courseId, authUser.uid, authUser.name, ...args)}
+                        onRemove={(...args) => {
+                            firebase.helpStudent(courseId, authUser.uid, authUser.name, student.id, null);
+                            firebase.removeStudentFromQueue(courseId, ...args);
+                        }}
                     />
                 );
             })}

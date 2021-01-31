@@ -56,6 +56,45 @@ class Firebase {
         this.currentUser = user;
     }
 
+    setActiveTa = (flag, courseId, studentId, taId, name) => {
+        const action = flag ? this.fieldValue.arrayUnion : this.fieldValue.arrayRemove;
+        this.firestore
+            .collection("courses")
+            .doc(courseId)
+            .update({
+                "activeTas": action({
+                    "taId": taId,
+                    "studentId": studentId,
+                    "name": name,
+                })
+            });
+    }
+
+    helpStudent = (courseId, taId, name, studentId, updatedStudentId) => {
+        console.log(name);
+        this.firestore
+            .collection("courses")
+            .doc(courseId)
+            .update({
+                "activeTas": this.fieldValue.arrayRemove({
+                    "taId": taId,
+                    "studentId": studentId,
+                    "name": name,
+                })
+            });
+
+        this.firestore
+            .collection("courses")
+            .doc(courseId)
+            .update({
+                "activeTas": this.fieldValue.arrayUnion({
+                    "taId": taId,
+                    "studentId": updatedStudentId,
+                    "name": name,
+                })
+            });
+    }
+
     removeStudentFromQueue = (courseId, id, name, notes, problemDescription, room) => {
         this.firestore
             .collection("courses")

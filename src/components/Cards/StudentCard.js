@@ -2,20 +2,37 @@ import { Badge, Button, Card, Col, Row } from 'react-bootstrap';
 
 import './Card.css';
 
-const StudentCard = ({ currentUserOccupied, helpedByCurrentUser, beingHelped, id, name, notes, onRemove, problemDescription, room, ...otherProps }) => {
-    const taName = "Tony";
+const StudentCard = ({ currentUserOccupied, helpedByCurrentUser, beingHelped, id, name, notes, onHelp, onRemove, problemDescription, room, ...otherProps }) => {
+    console.log(id)
     const takeToggle = helpedByCurrentUser ? (
-        <Button variant="cue" className="remove" block>Release this student</Button>
+        <Button 
+            variant="cue" 
+            className="remove" 
+            block 
+            onClick={() => onHelp(id, null)} 
+        >
+            Release this student
+        </Button>
     ) : (
-        <Button variant="cue" className="success" disabled={currentUserOccupied} block>Take this student</Button>
+        <Button 
+            variant="cue" 
+            className="success" 
+            disabled={currentUserOccupied} 
+            block
+            onClick={() => onHelp(null, id)} 
+        >
+            Take this student
+        </Button>
     );
 
     return (
         <Card>
             <Card.Body>
-                <div>
-                    {taName ? <Badge variant="primary" className="helping-ta-badge">TA: {taName}</Badge> : null}
-                </div>
+                {!beingHelped ? null : (
+                    <div>
+                        <Badge variant="primary" className="helping-ta-badge">Currently being helped</Badge>
+                    </div>
+                )}
                 <h2>{name}</h2>
                 <Row>
                     <Col md={3}>

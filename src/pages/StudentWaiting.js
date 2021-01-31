@@ -5,14 +5,16 @@ import { Checkmark } from 'react-checkmark';
 
 import { withAuthUser, withFirebase } from '../components';
 
-const StudentWaiting = ({ activeTas, authUser, firebase, studentsAhead, ...otherProps }) => {
+const StudentWaiting = ({ authUser, firebase, ...otherProps }) => {
     const [studentInfo, setStudentInfo] = useState();
+    const [course, setCourse] = useState();
     const { courseId } = useParams();
     const history = useHistory();
 
     useEffect(() => {
+        let unsubscribe = null;
         if (authUser) {
-            firebase.firestore
+            unsubscribe = firebase.firestore
                 .collection("courses")
                 .doc(courseId)
                 .onSnapshot((snapshot) => {
@@ -22,11 +24,22 @@ const StudentWaiting = ({ activeTas, authUser, firebase, studentsAhead, ...other
                     } else {
                         history.replace(`/`);
                     }
-                })
+                    
+                    setCourse(snapshot.data());
+                });
+        }
+
+        return () => {
+            if (unsubscribe) {
+                unsubscribe() 
+            };
         }
     }, [authUser, courseId, firebase, history]);
 
-    return !authUser ? <h1>Not logged in.</h1> : (
+    const studentsAhead = authUser && course && course.queue.findIndex((student) => student.id === authUser.uid);
+    const activeTas = course && course.activeTas.filter((ta, idx, arr) => arr.indexOf(ta) === idx);
+
+    return !authUser || !course ? null : (
         <div className="large-top-margin">
             {studentsAhead > 0 ?
                 (<>
@@ -39,8 +52,9 @@ const StudentWaiting = ({ activeTas, authUser, firebase, studentsAhead, ...other
                         <Col className="active-tas" md={6}>
                             <span>Active teaching assistants</span>
                             <ul>
-                                <li>Matty Vav</li>
-                                <li>Antonio Linhart</li>
+                                {activeTas.map((ta) => (
+                                    <li key={`${ta.taId}-${ta.studentId}`}>{ta.name}</li>
+                                ))}
                             </ul>
                         </Col>
                     </Row>
