@@ -19,7 +19,7 @@ This feature set provides teaching assistants with the tools necessary to run su
 ## Setup
 
 ### Hosted
-The project is hosted at [https://tada-cue.web.app)](https://tada-cue.web.app).
+The project is hosted at [https://tada-cue.web.app](https://tada-cue.web.app).
 
 ### Local
 
