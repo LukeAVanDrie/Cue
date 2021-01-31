@@ -34,4 +34,10 @@ export const withAuthentication = WrappedComponent => {
     return withFirebase(WithAuthentication);
 };
 
+export const withAuthUser = WrappedComponent => (props) => (
+    <AuthUserContext.Consumer>
+        {(authUser) => <WrappedComponent {...props} authUser={authUser} />}
+    </AuthUserContext.Consumer>
+);
+
 export default AuthUserContext;

@@ -1,6 +1,10 @@
+import { useParams } from 'react-router-dom';
+
 import { AuthUserContext, StudentCard } from '../components';
 
 const Ta = () => {
+    const { courseId } = useParams();
+    console.log(courseId);
     return (
         <AuthUserContext.Consumer>
             {(authUser) => !authUser ? null : (
