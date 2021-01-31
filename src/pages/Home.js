@@ -25,6 +25,7 @@ export const Home = () => {
                             <ClassCard key={2} courseName="CSCE 100" studentsInQueue={3} activeTas={3} userIsTa />
                         </Col>
                     </Row>
+                    <p class="h4">No courses found—please contact a teaching assistant to be added to your course!</p>
                 </>
             )}
         </AuthUserContext.Consumer>
