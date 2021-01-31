@@ -21,20 +21,27 @@ class Firebase {
         this.provider = new app.auth.GithubAuthProvider();
     }
 
+    // Authentication and user management
+    getUser = (userId) => {
+        return this.firestore.doc(`users/${userId}`).get();
+    }
+
     updateCreateUserFromGithub = (githubUser) => {
-        const userRef = this.firestore.collection(`users`).doc(`${githubUser.uid}`);
+        const userRef = this.firestore.doc(`users/${githubUser.uid}`);
 
         const user = {
             uid: githubUser.uid,
             name: githubUser.displayName,
             email: githubUser.email,
-            photoUrl: githubUser.photoURL,
-            courses: []
+            photoUrl: githubUser.photoURL
         }
 
         userRef.set(user, {merge: true });
+
+        this.currentUser = user;
     }
 
+    // Returns promise with the user
     signInWithGithub = () => {
         this.auth.signInWithPopup(this.provider).then((result) => {
             // const token = result.credential.accessToken;
@@ -48,6 +55,25 @@ class Firebase {
 
     signOut = () => {
         this.auth.signOut();
+    }
+
+    // Courses
+
+    /*
+        Returns a promise
+
+        From promise, see if document exists by calling doc.exists
+
+        Get Course object using doc.data() method
+
+        Course object consisting of:
+            courseId: string
+            name: string (Class name)
+            owner: string (Id of owner)
+            students: string[] (String of ids of students)
+    */
+    getCourse = (courseId) => {
+        return this.firestore.doc(`courses/${courseId}`).get();
     }
 }
 

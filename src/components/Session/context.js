@@ -10,13 +10,19 @@ export const withAuthentication = WrappedComponent => {
 
         useEffect(() => {
             const listener = firebase.auth.onAuthStateChanged((result) => {
-                result ? setAuthUser(result) : setAuthUser(null);
+                if (result) {
+                    firebase.getUser(result.uid).then((doc) => {
+                        setAuthUser(doc.data());
+                    })
+                } else {
+                    setAuthUser(null);
+                }
             });
 
             return () => {
                 listener();
             };
-        }, [firebase.auth]);
+        }, [firebase]);
         
         return (
             <AuthUserContext.Provider value={authUser}>
