@@ -26,7 +26,7 @@ const ClassCard = ({ activeTas, courseId, isTa, name, studentsInQueue, ...otherP
     ) : (
         <Link to={`/student/${courseId}/join`} component={WrappedButton} variant="cue" disabled={activeTas === 0}>Put name into queue</Link>
     );
-
+    
     return (
         <Card>
             <Card.Body>

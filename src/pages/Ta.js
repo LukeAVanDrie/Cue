@@ -1,23 +1,64 @@
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { AuthUserContext, StudentCard } from '../components';
+import { withAuthUser, withFirebase, StudentCard } from '../components';
 
-const Ta = () => {
+const Ta = ({ authUser, firebase, ...otherProps }) => {
+    const [course, setCourse] = useState();
     const { courseId } = useParams();
-    console.log(courseId);
-    const currentUserOccupied = true;
-    return (
-        <AuthUserContext.Consumer>
-            {(authUser) => !authUser ? null : (
-                <>
-                    <StudentCard studentName="Matt Vav Antonio Linhart Patrick Murphy" questionText="Java syntax" room="141" helpedByCurrentUser={false} beingHelped={false} currentUserOccupied={currentUserOccupied} />
-                    <StudentCard studentName="Luke Van Drie Patrick Murphy" questionText="Pacman lair" room="112" notes="We want Matt" helpedByCurrentUser={false} beingHelped={true} currentUserOccupied={currentUserOccupied} />
-                    <StudentCard studentName="Ethan" questionText="I have a question about cue" room="110" helpedByCurrentUser={true} beingHelped={true} currentUserOccupied={currentUserOccupied} />
 
-                </>
-            )}
-        </AuthUserContext.Consumer>
+    useEffect(() => {
+        let unsubscribe = null;
+        if (authUser) {
+            firebase.firestore
+                .collection("courses")
+                .doc(courseId)
+                .update({
+                    "activeTas": firebase.fieldValue.arrayUnion({
+                        "taId": authUser.uid,
+                        "studentId": null,
+                    })
+                });
+
+            unsubscribe = firebase.firestore
+                .collection("courses")
+                .doc(courseId)
+                .onSnapshot((snapshot) => {
+                    setCourse(snapshot.data());
+                });
+        }
+
+        return () => {
+            if (unsubscribe) {
+                unsubscribe() 
+            };
+        }
+
+    }, [authUser, courseId, firebase]);
+
+    const currentUserOccupied = course && course.activeTas.some((ta) => ta.taId === authUser.id);
+    return !authUser ? null : (
+        <>
+            {course && course.queue.map((student) => {
+                const interactions = course.activeTas.filter((ta) => ta.studentId === student.id);
+
+                return (
+                    <StudentCard 
+                        beingHelped={interactions.length}
+                        currentUserOccupied={currentUserOccupied}
+                        key={student.id}
+                        helpedByCurrentUser={interactions.some((interaction) => interaction.taId === authUser.uid)}
+                        id={student.id}
+                        name={student.name}
+                        notes={student.notes}
+                        problemDescription={student.problemDescription} 
+                        room={student.room}
+                        onRemove={(args) => firebase.removeStudentFromQueue(courseId, ...args)}
+                    />
+                );
+            })}
+        </>
     );
 };
 
-export default Ta;
+export default withFirebase(withAuthUser(Ta));

@@ -17,11 +17,26 @@ class Firebase {
         app.initializeApp(config);
 
         this.auth = app.auth();
+        this.fieldValue = app.firestore.FieldValue;
         this.firestore = app.firestore();
         this.provider = new app.auth.GithubAuthProvider();
     }
 
-    // Authentication and user management
+    signInWithGithub = () => {
+        this.auth.signInWithPopup(this.provider).then((result) => {
+            // const token = result.credential.accessToken;
+            const user = result.user;
+            this.updateCreateUserFromGithub(user);
+        }).catch((error) => {
+            // const { code, credential, email, message } = error;
+            console.error(error);
+        });
+    }
+
+    signOut = () => {
+        this.auth.signOut();
+    }
+
     getUser = (userId) => {
         return this.firestore.doc(`users/${userId}`).get();
     }
@@ -41,38 +56,19 @@ class Firebase {
         this.currentUser = user;
     }
 
-    signInWithGithub = () => {
-        this.auth.signInWithPopup(this.provider).then((result) => {
-            // const token = result.credential.accessToken;
-            const user = result.user;
-            this.updateCreateUserFromGithub(user);
-        }).catch((error) => {
-            // const { code, credential, email, message } = error;
-            console.error(error);
-        });
-    }
-
-    signOut = () => {
-        this.auth.signOut();
-    }
-
-    // Courses
-
-    /*
-        Returns a promise
-
-        From promise, see if document exists by calling doc.exists
-
-        Get Course object using doc.data() method
-
-        Course object consisting of:
-            courseId: string
-            name: string (Class name)
-            owner: string (Id of owner)
-            students: string[] (String of ids of students)
-    */
-    getCourse = (courseId) => {
-        return this.firestore.doc(`courses/${courseId}`).get();
+    removeStudentFromQueue = (courseId, id, name, notes, problemDescription, room) => {
+        this.firestore
+            .collection("courses")
+            .doc(courseId)
+            .update({
+                "queue": this.fieldValue.arrayRemove({
+                    "id": id,
+                    "name": name,
+                    "notes": notes,
+                    "problemDescription": problemDescription,
+                    "room": room
+                })
+            });
     }
 }
 

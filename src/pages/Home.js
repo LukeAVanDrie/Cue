@@ -26,7 +26,7 @@ const Home = ({ authUser, firebase, ...otherProps }) => {
             {courses.length ? (
                 <Row>
                     {courses.map((course) => (
-                        <Col key={course.id} sm={6}>
+                        <Col key={course.id} md={6}>
                             <ClassCard
                                 activeTas={course.activeTas.length}
                                 courseId={course.id}

@@ -2,23 +2,23 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 
 import './Card.css';
 
-const StudentCard = ({ studentName, questionText, room, currentUserOccupied, helpedByCurrentUser, beingHelped, notes }) => {
+const StudentCard = ({ currentUserOccupied, helpedByCurrentUser, beingHelped, id, name, notes, onRemove, problemDescription, room, ...otherProps }) => {
     const takeToggle = helpedByCurrentUser ? (
         <Button variant="cue" className="remove" block>Release this student</Button>
     ) : (
-            <Button variant="cue" className="success" disabled={currentUserOccupied} block>Take this student</Button>
-        );
+        <Button variant="cue" className="success" disabled={currentUserOccupied} block>Take this student</Button>
+    );
 
     return (
         <Card>
             <Card.Body>
                 <h2>
-                    {studentName}
+                    {name}
                 </h2>
                 <Row>
                     <Col md={3}>
                         <Card.Text>
-                            Question: {questionText}
+                            Question: {problemDescription}
                         </Card.Text>
                     </Col>
                     <Col md={3}>
@@ -32,8 +32,16 @@ const StudentCard = ({ studentName, questionText, room, currentUserOccupied, hel
                         </Card.Text>
                     </Col>
                     <Col md={4}>
-                            {takeToggle}
-                            <Button variant="cue" className="remove" disabled={beingHelped && !helpedByCurrentUser} block>Remove student</Button>
+                        {takeToggle}
+                        <Button 
+                            variant="cue" 
+                            className="remove" 
+                            disabled={beingHelped && !helpedByCurrentUser} 
+                            block                                     
+                            onClick={() => onRemove(id, name, notes, problemDescription, room)} 
+                        >
+                            Remove student
+                        </Button>
                     </Col>
                 </Row>
             </Card.Body>
