@@ -4,3 +4,7 @@
     border-width: 0px !important;
     margin-bottom: 25px;
 }
+
+.card-text {
+    margin-bottom: 10px;
+}

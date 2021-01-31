@@ -13,9 +13,14 @@ const ClassCard = ({ courseName, userIsTa, studentsInQueue, activeTas }) => {
                 </Card.Text>
             </>
         ) : (
-            <Card.Text>
-                Not currently active
-            </Card.Text>
+            <>
+                <Card.Text>
+                    Not currently active
+                </Card.Text>
+                <Card.Text>
+                    Waiting on a teaching assistant to join
+                </Card.Text>
+            </>
         );
     const actionButton = userIsTa ? (
             <Button variant="cue">Start helping</Button>
